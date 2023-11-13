@@ -9,8 +9,9 @@ function parsexml() {
     const parser = new xml.XMLParser();
     const jsonObj = parser.parse(xmlData);
 
-    if (jsonObj.auctions && jsonObj.auctions.auction) {
-        const auctions = jsonObj.auctions.auction;
+    if (jsonObj.auctions && jsonObj.auctions.auction) 
+    {
+        const auctions = Array.isArray(jsonObj.auctions.auction) ? jsonObj.auctions.auction : [jsonObj.auctions.auction];
 
         const xmlStr = `<?xml version="1.0" encoding="UTF-8"?>\n<data>${auctions
             .map((auction) => {
